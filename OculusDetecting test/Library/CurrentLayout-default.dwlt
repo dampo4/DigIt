@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Package Manager
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 875, y: 696}
+  m_MinSize: {x: 875, y: 592}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -45,10 +45,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 1278, y: 542}
+  m_MinSize: {x: 1279, y: 542}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 14
+  controlID: 40
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 301
     height: 561
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -150,7 +150,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 696}
+  m_MinSize: {x: 875, y: 592}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -222,10 +222,10 @@ MonoBehaviour:
     y: 0
     width: 1506
     height: 947
-  m_MinSize: {x: 1002, y: 542}
+  m_MinSize: {x: 1003, y: 542}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 15
+  controlID: 65
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -247,10 +247,10 @@ MonoBehaviour:
     y: 0
     width: 1506
     height: 561
-  m_MinSize: {x: 1002, y: 271}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 1003, y: 271}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 16
+  controlID: 66
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -369,21 +369,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Packages
+    - Assets
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Packages
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Dampo4\OculusDetecting test
+  m_LastProjectPath: C:\Users\Dampo4\Documents\GitHub\DigIt\OculusDetecting test
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ffffff7f
-    m_LastClickedID: 2147483647
-    m_ExpandedIDs: 000000000837000000ca9a3b
+    m_SelectedIDs: d23c0000
+    m_LastClickedID: 15570
+    m_ExpandedIDs: 00000000d23c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -411,7 +411,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000008370000
+    m_ExpandedIDs: 00000000d23c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9ef3ffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 60fbffff
       m_RenameOverlay:
@@ -723,8 +723,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -766
     m_HBaseRangeMax: 766
-    m_VBaseRangeMin: -384.5
-    m_VBaseRangeMax: 384.5
+    m_VBaseRangeMin: -395
+    m_VBaseRangeMax: 395
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -741,11 +741,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1532
-      height: 769
+      height: 790
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 766, y: 384.5}
+    m_Translation: {x: 766, y: 395}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -753,9 +753,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -766
-      y: -384.5
+      y: -395
       width: 1532
-      height: 769
+      height: 790
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1532, y: 790}
