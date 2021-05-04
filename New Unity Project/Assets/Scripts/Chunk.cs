@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 public class Chunk
 {
     public ChunkCoord coord;
@@ -9,6 +9,7 @@ public class Chunk
     GameObject chunkObject;
     public MeshRenderer meshRenderer;
     public MeshFilter meshFilter;
+    public MeshCollider meshCollider;
     int vertexIndex = 0;
     List<Vector3> vertices = new List<Vector3>();
     List<int> triangles = new List<int>();
@@ -23,6 +24,7 @@ public class Chunk
         chunkObject = new GameObject();
         meshFilter = chunkObject.AddComponent<MeshFilter>();
         meshRenderer = chunkObject.AddComponent<MeshRenderer>();
+        meshCollider = chunkObject.AddComponent<MeshCollider>();
 
         meshRenderer.material = world.material;
         chunkObject.transform.SetParent(world.transform);
@@ -32,6 +34,8 @@ public class Chunk
         PopulateVoxelMap();
         CreateMeshData();
         CreateMesh();
+
+        meshCollider.sharedMesh = meshFilter.mesh;
     }
     
     void PopulateVoxelMap()
@@ -55,7 +59,11 @@ public class Chunk
             {
                 for (int z = 0; z < VoxelData.ChunkWidth; z++)
                 {
-                    AddVoxelDataToChunk(new Vector3(x, y, z));
+                    if (world.blockTypes[voxelMap[x,y,z]].isSolid)
+                    {
+                        AddVoxelDataToChunk(new Vector3(x, y, z));
+                    }
+                    
                 }
             }
         }
@@ -125,6 +133,7 @@ public class Chunk
         mesh.uv = uvs.ToArray();
         mesh.RecalculateNormals();
         meshFilter.mesh = mesh;
+        chunkObject.AddComponent<TeleportationArea>();
     }
 
     void AddTexture (int textureID)
