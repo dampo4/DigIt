@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 8471722893549259279}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: -4.8696513, y: -1.1569043, z: -4.3185806}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4697323010274212591}
   m_Father: {fileID: 0}
@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handType: 1
+  thumbMoveSpeed: 0.1
 --- !u!1001 &5096534493659192580
 PrefabInstance:
   m_ObjectHideFlags: 0

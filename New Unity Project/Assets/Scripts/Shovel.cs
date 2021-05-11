@@ -19,7 +19,8 @@ public class Shovel : MonoBehaviour
             {
                 
                 Destroy(collider.gameObject);
-                
+                Instantiate(item, collider.transform.position, Quaternion.identity);
+
             }
             else if (collider.gameObject.name.Contains("1"))
             {
@@ -28,7 +29,6 @@ public class Shovel : MonoBehaviour
             else if (!collider.gameObject.name.Contains("1") && !collider.gameObject.name.Contains("2"))
             {
                 collider.gameObject.name = "Cube1";
-                Instantiate(item, collider.transform.position, Quaternion.identity);
             }
 
 

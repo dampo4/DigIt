@@ -20,7 +20,7 @@ public class World : MonoBehaviour
     private void Start()
     {
         Random.InitState(seed);
-        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight - 50, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
+        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight - 52, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
         GenerateWorld();
         playerLastChunkCoord = GetChunkCoordFromVector3(player.position);
     }
@@ -105,7 +105,7 @@ public class World : MonoBehaviour
 
         if (yPos == terrainHeight)
         {
-            float chance = 100;
+            float chance = 1;
             float check = Random.Range(0f, 100f);
             if (check <= chance && (pos.x % 16) != 0 && (pos.x % 16) != 15 && (pos.z % 16) != 0 && (pos.z % 16) != 15)
             {
