@@ -40,7 +40,7 @@ public class Shovel : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.up, out hit, 5))
         {
             empty = true;
-            Debug.Log(empty);
+            //Debug.Log(empty);
         }
         
     }

@@ -10,13 +10,19 @@ public class AddToInventory : MonoBehaviour
     private bool full = false;
     private bool done = false;
     private int count = 0;
+
+    private void Start()
+    {
+        inventory = GameObject.Find("Canvas").GetComponent<Canvas>();
+        //image = GameObject.Find("Placeholder02").GetComponent<SpriteRenderer>().sprite;
+    }
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Clump" && !full)
         {
             Destroy(collider.gameObject);
             
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 16; i++)
             {
                 image = inventory.transform.Find("Inventory/ItemsParent/InventorySlot (" + i.ToString() + ")").gameObject.transform.Find("ItemButton/Icon").gameObject.GetComponent<Image>();
                 if (!image.IsActive() && !done)

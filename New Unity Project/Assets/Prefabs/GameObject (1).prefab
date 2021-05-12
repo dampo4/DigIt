@@ -2201,6 +2201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8e7dadcad634948a6fcb2581c81a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  home: {fileID: 0}
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1447461479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8e7dadcad634948a6fcb2581c81a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  home: {fileID: 0}
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1814260329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,18 +3367,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSource: 5
+  inputSource2: 0
   canvas: {fileID: 1596517770640840191}
   items:
   - {fileID: 1596517770533366891}
   - {fileID: 1303459349}
   - {fileID: 160204774}
+  LeftHands: []
   shovel: {fileID: 4539388136453618555, guid: aa6695e55d3fa7e49b875f2495c6b5f0, type: 3}
+  shower: {fileID: 0}
+  treasures: []
+  dirtHand: {fileID: 0}
+  lHand: {fileID: 0}
+  satchel: {fileID: 0}
+  treasureHand: {fileID: 0}
+  dirtOut: 0
   isTrigger: 0
   pressed: 0
   isSwitch: 0
   pressed1: 0
+  isSwitch2: 0
+  pressed2: 0
   active: 0
   rightHand: {fileID: 1596517770533366891}
+  test: {fileID: 0}
 --- !u!1 &1596517770533366891
 GameObject:
   m_ObjectHideFlags: 0

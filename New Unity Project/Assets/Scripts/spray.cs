@@ -7,23 +7,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class spray : MonoBehaviour
 {
     public GameObject particle;
-    public GameObject normalHand;
     public GameObject showerHand;
-    public GameObject shower;
+    public GameObject normalHand;
+    public GameObject player;
+    public GameObject model;
     // Update is called once per frame
-    void Update()
-    {
-        Debug.DrawRay(transform.position, -transform.up, Color.red);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 5))
-        {
-            if (hit.collider.gameObject.tag == "Clump")
-            {
-                hit.collider.gameObject.transform.localScale -= new Vector3(0.0004f, 0.0004f, 0.0004f);
-            }
-        }
 
-    }
     public void Selected()
     {
         particle.SetActive(true);
@@ -34,14 +23,14 @@ public class spray : MonoBehaviour
     }
     public void PickUp()
     {
-        shower.GetComponent<Renderer>().enabled = false;
-        normalHand.SetActive(false);
+        model.GetComponent<Renderer>().enabled = false;
+        player.GetComponent<PlayerControls>().DisableRight();
         showerHand.SetActive(true);
     }
-    public void PutDown()
+    /*public void PutDown()
     {
-        shower.SetActive(true);
+        model.SetActive(true);
         normalHand.SetActive(true);
         showerHand.SetActive(false);
-    }
+    }*/
 }
