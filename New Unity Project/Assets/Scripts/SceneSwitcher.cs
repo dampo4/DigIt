@@ -8,6 +8,7 @@ public class SceneSwitcher : MonoBehaviour
     public GameObject player;
     public Transform home;
     public Vector3 lastPos;
+    private bool isInWorld = true;
     public void TeleToHome()
     {
         /*if (SceneManager.GetActiveScene().name == "World")
@@ -15,7 +16,12 @@ public class SceneSwitcher : MonoBehaviour
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("Home"));
         }*/
-        lastPos = player.transform.position;
+        this.GetComponent<CharacterController>().enabled = false;
+        if (isInWorld)
+        {
+            lastPos = player.transform.position;
+        }
+        isInWorld = false;
         player.transform.position = home.position;
     }
     public void TeleToWorld()
@@ -25,8 +31,9 @@ public class SceneSwitcher : MonoBehaviour
             Debug.Log("test");
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("World"));
         }*/
-
+        isInWorld = true;
         player.transform.position = lastPos;
+        this.GetComponent<CharacterController>().enabled = true;
     }
 
 }

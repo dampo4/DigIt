@@ -7,6 +7,7 @@ public class World : MonoBehaviour
     public int seed;
     public BiomeAttributes biome;
     public Transform player;
+    public GameObject test;
     public Vector3 spawnPosition;
     public Material material;
     public BlockType[] blockTypes;
@@ -20,7 +21,7 @@ public class World : MonoBehaviour
     private void Start()
     {
         Random.InitState(seed);
-        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight - 52, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
+        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
         GenerateWorld();
         playerLastChunkCoord = GetChunkCoordFromVector3(player.position);
     }
@@ -88,7 +89,7 @@ public class World : MonoBehaviour
             chunks[c.x, c.z].isActive = false;
         }
     }
-    public byte GetVoxel(Vector3 pos)
+    public byte GetVoxel(Vector3 pos, GameObject chunk)
     {
         int yPos = Mathf.FloorToInt(pos.y);
         if (!isVoxelInWorld(pos))
@@ -110,7 +111,9 @@ public class World : MonoBehaviour
             if (check <= chance && (pos.x % 16) != 0 && (pos.x % 16) != 15 && (pos.z % 16) != 0 && (pos.z % 16) != 15)
             {
                 voxelValue = 0;
-                Instantiate(digable, new Vector3(pos.x, yPos, pos.z), Quaternion.identity);
+                GameObject go;
+                go = Instantiate(digable, new Vector3(pos.x, yPos, pos.z), Quaternion.identity) as GameObject;
+                go.transform.parent = chunk.transform;
             }
             else
             {
@@ -146,6 +149,67 @@ public class World : MonoBehaviour
         }  
         return voxelValue;
         
+    }
+
+    public byte GetVoxel(Vector3 pos)
+    {
+        int yPos = Mathf.FloorToInt(pos.y);
+        if (!isVoxelInWorld(pos))
+        {
+            return 0;
+        }
+        if (yPos == 0)
+        {
+            return 1;
+        }
+
+        int terrainHeight = Mathf.FloorToInt(biome.terrainHeight * Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.terrainScale)) + biome.solidGroundHeight;
+        byte voxelValue = 0;
+
+        if (yPos == terrainHeight)
+        {
+            float chance = 1;
+            float check = Random.Range(0f, 100f);
+            if (check <= chance && (pos.x % 16) != 0 && (pos.x % 16) != 15 && (pos.z % 16) != 0 && (pos.z % 16) != 15)
+            {
+                voxelValue = 0;
+                GameObject dig;
+
+            }
+            else
+            {
+                voxelValue = 3;
+            }
+        }
+        else if (yPos < terrainHeight && yPos > terrainHeight - 4)
+        {
+            voxelValue = 5;
+        }
+        else if (yPos > terrainHeight)
+        {
+            return 0;
+        }
+        else
+        {
+            voxelValue = 2;
+        }
+
+
+        if (voxelValue == 2)
+        {
+            foreach (Lode lode in biome.lodes)
+            {
+                if (yPos > lode.minHeight && yPos < lode.maxHeight)
+                {
+                    if (Noise.Get3DPerlin(pos, lode.noiseOffset, lode.scale, lode.threshold))
+                    {
+                        voxelValue = lode.blockID;
+                    }
+                }
+            }
+        }
+        return voxelValue;
+
     }
 
     void CreateNewChunk(int x, int z)

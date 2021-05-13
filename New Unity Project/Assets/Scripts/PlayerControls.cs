@@ -154,7 +154,7 @@ public class PlayerControls : MonoBehaviour
     public void CleanedHand()
     {
         DisableLeft();
-        int rand = Random.Range(0, 7);
+        int rand = Random.Range(0, 10);
         treasureHands[rand].SetActive(true);
         UpdateFound(rand);
         

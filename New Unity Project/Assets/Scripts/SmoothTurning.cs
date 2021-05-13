@@ -7,6 +7,7 @@ public class SmoothTurning : MonoBehaviour
 {
     private InputDevice device;
     private Vector2 inputStick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class SmoothTurning : MonoBehaviour
     }
     private void Turn()
     {
+        //Debug.Log("turning");
+
         var rotationAmount = transform.eulerAngles.y + inputStick.x;
         var directionVector = new Vector3(transform.eulerAngles.x, rotationAmount, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(directionVector);
