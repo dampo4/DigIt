@@ -35,14 +35,15 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private int active = 0;
     public GameObject rightHand;
     public GameObject test;
-
     public int bookIndex;
     public GameObject pageLeft;
     public GameObject pageMonarch;
     public GameObject pageDate;
     public GameObject pageDesc;
-
-
+    public Animator Ranimator;
+    public GameObject right;
+    public Animator Lanimator;
+    public GameObject left;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,14 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (right == null)
+        {
+            right = GameObject.FindWithTag("right");
+        }
+        if (left == null)
+        {
+            left = GameObject.FindWithTag("left");
+        }
         InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
         InputDevice device2 = InputDevices.GetDeviceAtXRNode(inputSource2);
         //Debug.Log(rightHand.GetComponent<ActionBasedController>().modelPrefab.name);
@@ -164,6 +173,9 @@ public class PlayerControls : MonoBehaviour
     }
     public void DisableLeft()
     {
+        Lanimator = left.GetComponent<Hand>().animator;
+        Lanimator.Rebind();
+        Lanimator.Update(0f);
         foreach (GameObject hand in LeftHands)
         {
             hand.SetActive(false);
@@ -171,6 +183,9 @@ public class PlayerControls : MonoBehaviour
     }
     public void DisableRight()
     {
+        Ranimator = right.GetComponent<Hand>().animator;
+        Ranimator.Rebind();
+        Ranimator.Update(0f);
         foreach (GameObject hand in RightHands)
         {
             hand.SetActive(false);

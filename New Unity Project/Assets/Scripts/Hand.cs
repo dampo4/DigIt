@@ -11,23 +11,34 @@ public enum HandType
 public class Hand : MonoBehaviour
 {
     public HandType handType;
-    private Animator animator;
+    public Animator animator;
     private InputDevice inputDevice;
     public float thumbMoveSpeed = 0.1f;
-    private float indexValue;
-    private float thumbValue;
-    private float threeFingerValue;
-
+    public float indexValue;
+    public float thumbValue;
+    public float threeFingerValue;
+    //public GameObject right;
+    //public GameObject left;
+    public bool wasDeactive;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         inputDevice = GetInputDevice();
     }
-
     // Update is called once per frame
     void Update()
     {
+        inputDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isSwitch);
+        /*if (isSwitch)
+        {
+            Debug.Log("hgg");
+            indexValue = 0;
+            thumbValue = 0;
+            threeFingerValue = 0;
+            animator = GetComponent<Animator>();
+            inputDevice = GetInputDevice();
+        }*/
         AnimateHand();
     }
     InputDevice GetInputDevice()
@@ -54,6 +65,8 @@ public class Hand : MonoBehaviour
 
         inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool primaryTouched);
         inputDevice.TryGetFeatureValue(CommonUsages.secondaryTouch, out bool secondaryTouched);
+
+
         if (primaryTouched || secondaryTouched)
         {
             thumbValue += thumbMoveSpeed;
@@ -68,5 +81,6 @@ public class Hand : MonoBehaviour
         animator.SetFloat("Index", indexValue);
         animator.SetFloat("ThreeFingers", threeFingerValue);
         animator.SetFloat("Thumb", thumbValue);
+
     }
 }

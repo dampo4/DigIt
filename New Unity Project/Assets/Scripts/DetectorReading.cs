@@ -8,6 +8,9 @@ public class DetectorReading : MonoBehaviour
     public Text detectorReading;
     private float waitTime = 2.0f;
     private float timer = 0.0f;
+    public Material found;
+    public Material nothing;
+    public List<GameObject> lights;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,72 +20,25 @@ public class DetectorReading : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > waitTime)
-        {
-            detectorReading.text = "0";
-            timer = 0;
-        }
+
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (other.gameObject.tag == "Artefact")
         {
-            timer = 0;
-            if (other.gameObject.name.Contains("gold"))
+            foreach (GameObject item in lights)
             {
-                if (other.gameObject.name.Contains("disc"))
-                {
-                    detectorReading.text = Random.Range(90, 100).ToString();
-                    Debug.Log("2");
-                }
-                if (other.gameObject.name.Contains("random"))
-                {
-                    detectorReading.text = Random.Range(90, 100).ToString();
-                    Debug.Log("2");
-                }
-            }
-            if (other.gameObject.name.Contains("silver"))
-            {
-                if (other.gameObject.name.Contains("disc"))
-                {
-                    detectorReading.text = Random.Range(80, 90).ToString();
-                    Debug.Log("2");
-                }
-                if (other.gameObject.name.Contains("random"))
-                {
-                    detectorReading.text = Random.Range(80, 90).ToString();
-                    Debug.Log("2");
-                }
-            }
-            if (other.gameObject.name.Contains("copper"))
-            {
-                if (other.gameObject.name.Contains("disc"))
-                {
-                    detectorReading.text = Random.Range(70, 80).ToString();
-                    Debug.Log("2");
-                }
-                if (other.gameObject.name.Contains("random"))
-                {
-                    detectorReading.text = Random.Range(70, 80).ToString();
-                    Debug.Log("2");
-                }
-            }
-            if (other.gameObject.name.Contains("iron"))
-            {
-                if (other.gameObject.name.Contains("disc"))
-                {
-                    detectorReading.text = "72";
-                    Debug.Log("2");
-                }
-                if (other.gameObject.name.Contains("random"))
-                {
-                    detectorReading.text = "72";
-                    Debug.Log("2");
-                }
+                item.GetComponent<Renderer>().material = found;
             }
 
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        foreach (GameObject item in lights)
+        {
+            item.GetComponent<Renderer>().material = nothing;
         }
     }
 }
