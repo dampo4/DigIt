@@ -36,11 +36,12 @@ public class Shovel : MonoBehaviour
     }
     private void Update()
     {
+        //check if raycast hits the ground
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.up, out hit, 5))
         {
+            //empty the shovel
             empty = true;
-            //Debug.Log(empty);
         }
         
     }

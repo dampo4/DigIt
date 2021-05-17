@@ -19,7 +19,7 @@ public class Clean : MonoBehaviour
             {
                 hit.collider.gameObject.transform.localScale -= new Vector3(0.0004f, 0.0004f, 0.0004f);
             }
-            if (hit.collider.gameObject.tag == "Clump" && hit.collider.gameObject.transform.localScale.x < 0.1)
+            if (hit.collider.gameObject.tag == "Clump" && hit.collider.gameObject.transform.localScale.x < 0.01)
             {
                 
                 player.GetComponent<PlayerControls>().SetDirt();

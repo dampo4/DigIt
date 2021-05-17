@@ -20,9 +20,12 @@ public class World : MonoBehaviour
     ChunkCoord playerLastChunkCoord;
     private void Start()
     {
+        //generate a random seed for the world
         Random.InitState(seed);
+        //generate the spawn position for the player based on world size
         spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
         GenerateWorld();
+        //used for render distance
         playerLastChunkCoord = GetChunkCoordFromVector3(player.position);
     }
     private void Update()
@@ -36,6 +39,7 @@ public class World : MonoBehaviour
     }
     void GenerateWorld()
     {
+        //creates enough chunks to populate the world
         for (int x = (VoxelData.WorldSizeInChunks / 2) - VoxelData.viewDistanceInChunks; x < (VoxelData.WorldSizeInChunks / 2) + VoxelData.viewDistanceInChunks; x++)
         {
             for (int z = (VoxelData.WorldSizeInChunks / 2) - VoxelData.viewDistanceInChunks; z < (VoxelData.WorldSizeInChunks / 2) + VoxelData.viewDistanceInChunks; z++)
@@ -43,7 +47,7 @@ public class World : MonoBehaviour
                 CreateNewChunk(x, z);
             }
         }
-
+        //spawns the player
         player.position = spawnPosition;
     }
 
@@ -106,7 +110,8 @@ public class World : MonoBehaviour
 
         if (yPos == terrainHeight)
         {
-            float chance = 1;
+            float chance = 5;
+            int dirtType = Random.Range(3, 20);
             float check = Random.Range(0f, 100f);
             if (check <= chance && (pos.x % 16) != 0 && (pos.x % 16) != 15 && (pos.z % 16) != 0 && (pos.z % 16) != 15)
             {
@@ -115,14 +120,30 @@ public class World : MonoBehaviour
                 go = Instantiate(digable, new Vector3(pos.x, yPos, pos.z), Quaternion.identity) as GameObject;
                 go.transform.parent = chunk.transform;
             }
-            else
+            else if (dirtType <= 15)
             {
                 voxelValue = 3;
+            }
+            else if (dirtType == 16)
+            {
+                voxelValue = 4;
+            }
+            else if (dirtType == 17)
+            {
+                voxelValue = 5;
+            }
+            else if (dirtType == 18)
+            {
+                voxelValue = 6;
+            }
+            else if (dirtType == 19)
+            {
+                voxelValue = 7;
             }
         }
         else if (yPos < terrainHeight && yPos > terrainHeight - 4)
         {
-            voxelValue = 5;
+            voxelValue = 9;
         }
         else if (yPos > terrainHeight)
         {
